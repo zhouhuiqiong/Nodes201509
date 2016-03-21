@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="jsonpAdapter.js"></script>
+    <script>
+        // https://tcc.taobao.com/cc/json/mobile_tel_segment.htm?tel=18201232238&callback=A
+
+        window.onload = function () {
+            var input = document.getElementById('input');
+            var btn = document.getElementById('btn');
+
+            btn.onclick = function () {
+                var value = '';
+                if (value = input.value) {
+                    JSONPAdapter.request(
+                            'https://tcc.taobao.com/cc/json/mobile_tel_segment.htm',
+                            {tel: value},
+                            'callback', function (data) {
+                                var domString = '<tr>';
+                                for (var n in data) {
+                                    if (!data.hasOwnProperty(n)) {
+                                        continue;
+                                    }
+                                    domString += '<td>' + data[n] + '</td>';
+                                }
+                                domString += '</tr>';
+                                document.querySelector('tbody').innerHTML = domString;
+                            })
+                }
+            }
+        };
+    </script>
+</head>
+<body>
+<label>请输入手机号:<input type="tel" id="input"></label>
+<label><input type="button" value="查询此手机号码" id="btn"></label>
+<table>
+    <caption>手机号码信息</caption>
+    <thead>
+    <tr>
+        <th>区域id</th>
+        <th>区域代理</th>
+        <th>运营商</th>
+        <th>ispVid</th>
+        <th>手机前7位</th>
+        <th>省市</th>
+        <th>手机号码</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+</table>
+</body>
+</html>

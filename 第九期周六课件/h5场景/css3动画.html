@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        div{
+            width: 200px;
+            height: 200px;
+            background: red;
+            margin: 500px 0 0 300px;
+        }
+        /*div:hover{*/
+            /*width: 500px;*/
+            /*opacity: 0.5;*/
+            /*transform: scale(2);*/
+            /*-webkit-transform: scale(2);*/
+            /*transition:opacity 1s  linear,width 1s ease-in;/!*用来设置css属性值在一定区间内由一个值向另一个值转变*!/*/
+            /*-webkit-transition:opacity 1s linear,width 1s ease-in*/
+        /*}*/
+
+     /*.a1{*/
+            /*transform: translate(-100px,-100px);/!*往上偏移是负值,往左偏移也是负值*!/*/
+            /*transition:1s;*/
+        /*}*/
+
+      @keyframes move {
+          0%{
+              transform:translate(0,-100px)
+          }
+          50%{
+              transform: translate(0,-200px);
+          }
+          100%{
+              transform: translate(0,50px);
+          }
+      }
+        .a1{
+            animation:move 1s ease-in 1s  1 paused ;
+            animation-play-state: running;
+        }
+
+    </style>
+</head>
+<body>
+    <div></div>
+</body>
+</html>

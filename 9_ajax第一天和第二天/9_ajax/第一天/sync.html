@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        var xhr=new XMLHttpRequest;
+        xhr.open('get','info.txt',false);
+        xhr.onload=function(){
+            if(this.status===200){
+                console.log(xhr.responseText);
+            }
+        };
+        /**
+         * 会把参数放到当前浏览器执行队列的最后一个去执行
+         */
+        setTimeout(function(){
+            xhr.send();
+        },0);
+
+        // 事件循环
+// V8
+        // 浏览器引擎分为两种 渲染引擎 js执行引擎
+        // ie trident chakra(查克拉)
+        // chrome webkit blink
+        // firefox gecko spider
+        // safari webkit
+        console.log('sync request');
+
+
+//        var xhr=new XMLHttpRequest;
+//        xhr.open('get','info.txt');
+//        xhr.onload=function(){
+//            if(this.status===200){
+//                console.log(xhr.responseText);
+//            }
+//        };
+//        xhr.send();
+//        console.log('async request');
+    </script>
+</head>
+<body>
+
+</body>
+</html>

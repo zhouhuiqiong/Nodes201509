@@ -1,0 +1,19 @@
+MIME类型
+多媒体因特网邮件扩展
+
+标识内容类型
+
+浏览器如何正确的识别服务器发送的内容？
+通过响应首部的content-type拿到响应主体的类型。然后根据这个类型去正确的加载响应主体中数据
+
+
+html text/html
+css text/css
+js text/javascript
+png image/png
+jpg image/jpeg
+gif image/gif
+
+有固定的格式 大类型/小类型
+这种格式就叫做MIME Type
+

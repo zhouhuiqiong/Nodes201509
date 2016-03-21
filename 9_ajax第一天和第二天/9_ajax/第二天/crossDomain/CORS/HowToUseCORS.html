@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        // ie9+
+        var cors = new XMLHttpRequest();
+        // 当这个属性不为undefined时，说明此对象支持跨域资源共享
+        /**
+         * 为什么要判断恒等于undefined
+         * 因为withCredentials默认值为false
+         */
+        if(cors.withCredentials===void 0){
+            console.log('此浏览器不支持cors')
+        }else{
+            console.log('此浏览器支持cors')
+        }
+
+        /**
+         * withCredentials这个属性是什么意思？
+         * 默认值为false
+         * 发起跨域请求时是否携带cookie
+         */
+
+
+        /**
+         * 只支持ie8+
+         * @type {XDomainRequest}
+         * ie6、ie7无法支持跨域资源共享
+         */
+        var iecors=new XDomainRequest();
+    </script>
+</head>
+<body>
+
+</body>
+</html>

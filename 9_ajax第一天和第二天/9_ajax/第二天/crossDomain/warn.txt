@@ -1,0 +1,64 @@
+一)什么是跨域？
+
+url的格式 <scheme://><hostname><:port><path><?param&...><#hash>
+
+域名必须要包含哪些部分？
+必须要包含三部分
+1、scheme
+2、hostname
+3、port
+
+http://www.baidu.com:80
+
+跨域就是在a域名内请求b域名下的资源，这就叫跨域访问。
+
+只要域名三要素有任何一个不一样，就是跨域访问
+
+二)同源策略
+什么是同源策略？
+是浏览器厂商为了安全强制提出的一种防止跨域访问的安全限制
+需求：
+现在有两个域名 一个是a.com 另一个是b.com
+b.com提供了一个获取学生信息的接口 返回的是json格式的数据
+我需要在a.com里成功获取到b.com提供的这个接口。并成功显示数据。
+
+不受同源策略限制的html标签：
+1、img
+会把加载到的内容强制转换为图片显示。
+2、script
+会把加载到的资源，强制当成脚本来执行。
+4、iframe
+虽然到资源，但是因为受到同源策略的限制。没办法获取到iframe里头的内容
+
+什么是jsonp？
+原理：利用script加载对方域的jsonp接口，获取数据
+前提：
+1、必须要知道对方服务器规定的jsonpcallback名称是什么？
+2、利用jsonpcallback传送给对方服务器的回调函数名必须在jsonp调用之前在window下声明完成
+
+注意事项：
+1、jsonp只能是http get 方法，因为它是用script标签去加载资源。而整个html上所有通过src、href来加载的资源，都是通过get方法加载的。
+2、get系有的特点 jsonp全有
+3、必须在全局对象下声明一个可供调用的回调函数
+4、服务器的格式 必须符合jsonp规范。“方法名(json数据)”
+为什么叫jsonp？不叫其他的名字？
+在json数据前填充了一个方法名 => json-padding => jsonp
+
+
+三)跨域资源共享
+CORS cross-origin resource sharing
+
+它和jsonp的区别？
+1、兼容性：jsonp没有兼容性，而cors为ie8+
+2、http方法:jsonp只能是get方法，而cors则支持get、post、delete、head、put
+3、server端：jsonp需要服务器返回这样的格式 “方法名(json数据)”，而cors对返回数据没有格式要求，但是需要server端添加响应首部“Access-Control-Allow-Origin”
+4、特点：jsonp是利用script发送的跨域请求，而cors则是利用原生API发送的跨域请求
+5、安全性：jsonp相对于cors，一点也不安全
+它和jsonp的相同点？
+1、都是处理跨域问题，解决跨域问题。
+2、都是请求的跨域接口，来获取跨域数据
+3、都需要server端紧密配合
+
+
+
+

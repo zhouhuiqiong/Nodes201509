@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="lib/myAJAX.js"></script>
+    <script>
+        // ready和onload有什么区别
+        // 只要一个对象有readyState就一定会有onreadystatechang事件
+        var ready = function (callback) {
+            if (document.readyState === 'complete') {
+                callback();
+                return;
+            }
+            if (window.addEventListener) {
+                window.addEventListener('DOMContentLoaded', function () {
+                    callback();
+                }, false);
+            } else {
+                // ie7+
+                document.attachEvent('readystatechange', function () {
+                    if (document.readyState === 'loading' || document.readyState === 'interactive' || document.readyState === 'complete') {
+                        callback();
+                    }
+                });
+                // ie6 doScroll
+                var interval=setInterval(function () {
+                    try {
+                        /**
+                         * doScroll有一个特点
+                         * 在dom树加载未完成的时候执行此方法会报错。
+                         * 所以只要此方法不报错则说明dom树加载完成
+                         */
+                        document.body.doScroll('left');
+                        clearInterval(interval);
+                        callback();
+                    } catch (e) {
+                        arguments.callee();
+                    }
+                }, 50);
+
+            }
+        }
+
+        ready(function(){
+            console.log(new Date);
+            x.ajax({
+                url:'/getInfo',
+                type:'get',
+                cache:false,
+                async:true,
+                timeout:3000,
+                success:function(data){
+                    console.log(data)
+                },
+                error:function(){
+                    console.log(new Date);
+                    console.log('超时')
+                }
+            })
+        });
+    </script>
+</head>
+<body>
+测试超时
+</body>
+</html>

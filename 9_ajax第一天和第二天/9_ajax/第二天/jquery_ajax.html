@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js"></script>
+    <script>
+        $(function () {
+            /*$.ajax({
+             // 是否为异步请求
+             async:true,
+             // 发送ajax请求之前，执行此函数
+             beforeSend:function(){
+             // 用的最多的就是加载loading图
+             },
+             // 是否缓存，
+             cache:true,
+             // 不管成功还是失败都会执行此函数
+             complete:function(){
+             // 用的最多的是隐藏loading图
+             },
+             // 发送的mime类型
+             // 这个mime类型代表的是表单提交
+             // 告诉服务器的
+             contentType:'application/x-www-form-urlencoded; charset=urf-8',
+             // success、error、complete这三个函数中this指向
+             // 上下文
+             context:{name:'LOCAL'},
+             // 往服务器发送的数据，可以是字符串也可以是对象
+             data:'name=123&age=18',
+             // 按照指定格式转化服务器返回的数据，如转换不成功则执行error方法
+             // text json script jsonp xml html
+             dataType:'json',
+             // ajax请求失败、格式化服务器返回的数据失败、超时、状态码为4或5开头的时候
+             // 以上四种情况都会执行error方法
+             error:function(err){
+             // err就是错误信息
+             },
+             // 自定义请求首部
+             headers:{'myheader':'zidingyi'},
+             // 使用什么http方法去执行ajax请求
+             // jquery1.9+使用method 1.9-使用type
+             method:'get',
+             // 告诉浏览器一个指定的mimeType，并按照此格式显示服务器返回的数据
+             mimeType:'application/json',
+             // url密码
+             password:'123',
+             // url账户名
+             username:'test',
+             // 成功时执行此函数
+             success:function(data){
+             // data就表示服务器返回的数据
+             },
+             // 设置超时毫秒数，默认为0 不执行超时逻辑
+             timeout:0,
+             // ajax请求的路径/接口
+             url:''
+             });*/
+
+            // deferred
+            function send(url){
+                return $.ajax({
+                    url: url
+                })
+            }
+
+            var _send=send('info.txt');
+
+            _send.done(function (data) {
+                // 成功时执行 此函数
+                // 和success执行时间及条件一模一样
+                console.log('outer done')
+            }).fail(function (err) {
+                // 失败时执行此函数
+                // 和error执行时间和条件一模一样
+                console.error('outer fail')
+            }).always(function () {
+                // 不管成功韩式失败都会执行此函数
+                // 和complete执行时间和条件一模一样
+                console.info('outer always')
+            })
+        })
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

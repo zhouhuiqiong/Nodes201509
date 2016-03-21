@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        var getCORS = (function () {
+            /**
+             * 判断是否支持跨域资源共享
+             * @returns {*}
+             */
+            var supportedCORS = function () {
+                // 判断是否为ie8+
+                if (window.XDomainRequest) {
+                    return XDomainRequest;
+                }
+                // 是否支持XMLHttprequest
+                if (window.XMLHttpRequest) {
+                    var xhr = new XMLHttpRequest();
+                    // 判断是否含有withCredentials
+                    // 如果有则返回XMLHttpRequest
+                    // 如没有则返回null
+                    return xhr.withCredentials === void 0 ? null : XMLHttpRequest;
+                }
+                return null;
+            };
+            var CORSInterface = supportedCORS();
+            if (!CORSInterface) {
+                throw new Error('当前浏览器不支持此功能');
+            }
+            return CORSInterface;
+        })();
+        /**
+         * cors分为4步
+         * 1、实例化
+         * 2、open
+         * 3、注册onload(cors不支持onreadystatechange)
+         * 4、send
+         */
+
+        var xhr = new getCORS();
+        /**
+         * 参数和ajax一模一样
+         */
+        xhr.open('GET', 'http://localhost:8087/cors', true);
+
+        /**
+         * HTTP事务完成，执行此函数
+         */
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                console.log(xhr.responseText);
+            }
+        };
+        /**
+         * SEND注意事项和ajax一模一样
+         */
+        xhr.send();
+    </script>
+</head>
+<body>
+
+</body>
+</html>

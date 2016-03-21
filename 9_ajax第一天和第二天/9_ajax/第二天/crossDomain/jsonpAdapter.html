@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="jsonpAdapter.js"></script>
+    <script>
+        window.onload = function () {
+            JSONPAdapter.request('http://localhost:12345/getStudentsInfo',
+                    null,
+                    'valNameMustBe',
+                    function (data) {
+                        // 处理data
+                        console.log(data);
+                    });
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>
